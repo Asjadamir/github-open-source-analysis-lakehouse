@@ -164,10 +164,25 @@ def api_get(endpoint, params=None, max_attempts=5):
             response.raise_for_status()
             return response.json()
 
+        
         except (
             requests.exceptions.Timeout,
             requests.exceptions.ConnectionError,
+            requests.exceptions.ChunkedEncodingError,
         ) as error:
+            if attempt == max_attempts:
+                raise
+
+            delay = min(2 ** attempt, 30)
+
+            print(
+                f"Temporary connection error: {error}\n"
+                f"Retrying in {delay}s "
+                f"(attempt {attempt}/{max_attempts})..."
+            )
+
+            time.sleep(delay)
+
             if attempt == max_attempts:
                 raise
 

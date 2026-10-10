@@ -1,5 +1,5 @@
 {
-  "watermark_utc": "2026-10-09T18:44:48Z",
-  "last_mode": "full",
-  "last_output_directory": "data\\full_load\\2026-10-09_184448"
+  "watermark_utc": "2026-10-10T11:33:42Z",
+  "last_mode": "incremental",
+  "last_output_directory": "data\\incremental_load\\2026-10-10_113342"
 }
